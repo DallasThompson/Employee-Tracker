@@ -78,10 +78,71 @@ const displayAddEmployeeQ = async () => {
   ]);
   return answer;
 };
+const getDepartmentName = async () => {
+  const answer = await inquirer.prompt([
+    {
+      type: "input",
+      name: "dept",
+      message: "Provide a name for the department.",
+    },
+  ]);
+  return answer;
+};
+const getRoleInfo = async (deptNames) => {
+  const answer = await inquirer.prompt([
+    {
+      type: "list",
+      name: "dept",
+      message: "Please select a department in which to add the role.",
+      choices: deptNames,
+    },
+    {
+      type: "input",
+      name: "title",
+      message: "Add a title for this role.",
+    },
+    {
+      type: "number",
+      name: "salary",
+      message: "Enter the salary for this role.",
+    },
+  ]);
+  return answer;
+};
+const getEmployeeInfo = async (roleTitles, employeeNames) => {
+  const answer = await inquirer.prompt([
+    {
+      type: "list",
+      name: "role",
+      message: "Please select a role for the employee.",
+      choices: roleTitles,
+    },
+    {
+      type: "input",
+      name: "firstName",
+      message: "Enter the first name for this employee.",
+    },
+    {
+      type: "input",
+      name: "lastName",
+      message: "Enter the last name for this employee.",
+    },
+    {
+      type: "list",
+      name: "manager",
+      message: "Please select a manager for this employee.",
+      choices: employeeNames,
+    },
+  ]);
+  return answer;
+};
 
 module.exports = {
   displayStartUpQ,
   displayAddDepartmentQ,
   displayAddRoleQ,
   displayAddEmployeeQ,
+  getDepartmentName,
+  getRoleInfo,
+  getEmployeeInfo,
 };
